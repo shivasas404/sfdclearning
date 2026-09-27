@@ -1,0 +1,22 @@
+<template>
+    <lightning-card  title="Looping">
+            <ul class="slds-list_vertical slds-has-dividers_bottom-space">
+                <template for:each={carList} for:item="car">
+                    <li key={car} class="slds-list__item">
+                        <div class="slds-text-heading_small">{car}</div>
+                        <p class="slds-text-body_regular slds-text-color_weak">{car}</p>
+                    </li>
+                </template>
+            </ul>
+             <ul class="slds-list_vertical slds-has-dividers_bottom-space">
+                <template iterator:car={carList}>
+                    <li key={car} class="slds-list__item">
+                        <p lwc:if={car.first}><strong>New List</strong></p>
+                        <div class="slds-text-heading_small">{car.value}--{car.index}</div>
+                        <p class="slds-text-body_regular slds-text-color_weak">{car.value}</p>
+                        <p lwc:if={car.last}><strong>List Ended Here</strong></p>
+                    </li>
+                </template>
+            </ul>
+        </lightning-card>
+</template>

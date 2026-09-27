@@ -1,0 +1,103 @@
+<template>
+     <div class="quiz-container">
+        <div class="quiz-header">
+            <div>
+                <div class="quiz-title">Quiz</div>
+                <div class="quiz-progress">Question {currentQuestion} of {totalQuestions}</div>
+            </div>
+        </div>
+
+         <template if:true={question}>
+            <div class="question-card">
+
+                <div class="question-number">
+                    Question {currentQuestion}
+                </div>
+
+                <h2 class="question-text">
+                    {question.question}
+                </h2>
+
+                <div class="answer-type">
+                    <template if:true={isSingleAnswer}>
+                        Select one answer
+                    </template>
+
+                    <template if:true={isMultipleAnswer}>
+                        Select all correct answers
+                    </template>
+                </div>
+
+                <div class="answers">
+
+                    <template for:each={question.answers} for:item="answer">
+
+                        <!-- RADIO -->
+                        <template if:true={isSingleAnswer}>
+                            <label
+                                key={answer.id}
+                                class="answer-option">
+
+                                <input
+                                    type="radio"
+                                    name="quizAnswer"
+                                    value={answer.id}
+                                    checked={answer.selected}
+                                    onchange={handleAnswerChange} />
+
+                                <span class="custom-radio"></span>
+
+                                <span class="answer-text">
+                                    {answer.text}
+                                </span>
+                            </label>
+                        </template>
+
+                        <!-- CHECKBOX -->
+                        <template if:true={isMultipleAnswer}>
+                            <label
+                                key={answer.id}
+                                class="answer-option">
+
+                                <input
+                                    type="checkbox"
+                                    value={answer.id}
+                                    checked={answer.selected}
+                                    onchange={handleAnswerChange} />
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="answer-text">
+                                    {answer.text}
+                                </span>
+                            </label>
+                        </template>
+
+                    </template>
+                </div>
+
+            </div>
+        </template>
+        <div class="quiz-footer">
+
+            <button
+                class="nav-button previous"
+                onclick={handlePrevious}
+                disabled={isFirstQuestion}>
+                Previous
+            </button>
+
+            <button
+                class="nav-button next"
+                onclick={handleNext}>
+                <template if:true={isLastQuestion}>
+                    Submit Quiz
+                </template>
+                <template if:false={isLastQuestion}>
+                    Next
+                </template>
+            </button>
+
+        </div>
+    </div>
+</template>

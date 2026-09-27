@@ -1,0 +1,13 @@
+<template>
+    {displayText}
+    <lightning-card  title="Hello">
+           <lightning-input onchange={syncValue}></lightning-input>
+           {displayText}
+           <lightning-input onchange={setUserDetails} name="Name" value={myUserDetils.Name}></lightning-input>
+           {myUserDetils.Name}
+           <lightning-input onchange={setUserDetails} name="Email" value={myUserDetils.Email}></lightning-input>
+           {myUserDetils.Email}
+           <lightning-input onchange={setUserDetails} name="City" value={myUserDetils.City}></lightning-input>
+           {myUserDetils.City}
+    </lightning-card>
+</template>

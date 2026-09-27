@@ -1,0 +1,11 @@
+<template>
+    <lightning-card  title="Conditional Rendering">
+            <lightning-button label="Show/Hide Content" slot="actions" onclick={toggleContent}></lightning-button>
+            <template lwc:if={showContentTrue}>
+                <p class="slds-p-horizontal_small">This content is conditionally rendered true.</p>
+            </template>
+            <template lwc:elseif={showContentFalse}>
+                <p class="slds-p-horizontal_small">This content is conditionally rendered false.</p>
+            </template>
+        </lightning-card>
+</template>
